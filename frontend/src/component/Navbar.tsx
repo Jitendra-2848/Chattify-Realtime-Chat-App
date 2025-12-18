@@ -5,7 +5,6 @@ import { AiOutlineUser } from "react-icons/ai";
 import { CiLogin } from "react-icons/ci";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
-// import { api } from '../lib/axios'; 
 
 const Navbar = () => {
   const { AuthUser,logout } = useAuthStore();

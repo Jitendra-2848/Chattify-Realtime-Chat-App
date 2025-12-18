@@ -12,7 +12,6 @@ const io = new Server(server, {
   },
 });
 
-// ✅ FIX 1: Use Object {} instead of Map
 const onlineUsers = {};
 
 io.on("connection", (socket) => {
@@ -25,7 +24,6 @@ io.on("connection", (socket) => {
       console.log("✅ User joined:", userId);
       console.log("📋 Online users:", Object.keys(onlineUsers));
       
-      // ✅ FIX 2: Object.keys() now works correctly
       io.emit("onlineUsers", Object.keys(onlineUsers));
     }
   });
@@ -34,7 +32,6 @@ io.on("connection", (socket) => {
   socket.on("sendMessage", (data) => {
     console.log("📨 Message received:", data);
     
-    // ✅ FIX 3: Use receiverId (not _id)
     const receiverSocketId = onlineUsers[data.receiverId];
     console.log("🔍 Receiver socket:", receiverSocketId);
     

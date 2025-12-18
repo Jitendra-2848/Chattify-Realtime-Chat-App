@@ -43,11 +43,9 @@ const Signuppage: React.FC = () => {
     <div className="w-full min-h-screen flex items-center justify-center bg-slate-100">
       <div className="w-full max-w-5xl bg-white flex rounded-2xl shadow-xl overflow-hidden">
 
-        {/* FORM */}
         <div className="w-full md:w-1/2 p-6 sm:p-10 flex items-center justify-center">
           <form onSubmit={handleSubmit} className="w-full max-w-md font-medium">
 
-            {/* Logo */}
             <div className="flex items-center gap-2 mb-6 text-gray-700">
               <MessageCircle style={{ color: "rgb(167,140,222)" }} />
               <span className="font-semibold text-lg">Chattify</span>
@@ -67,7 +65,6 @@ const Signuppage: React.FC = () => {
               </div>
             )}
 
-            {/* Username */}
             <label className="text-sm text-gray-700">Username</label>
             <input
               name="username"
@@ -81,7 +78,6 @@ const Signuppage: React.FC = () => {
               style={{ outlineColor: "rgb(167,140,222)" }}
             />
 
-            {/* Email */}
             <label className="text-sm text-gray-700">Email address</label>
             <input
               name="email"
@@ -96,7 +92,6 @@ const Signuppage: React.FC = () => {
               style={{ outlineColor: "rgb(167,140,222)" }}
             />
 
-            {/* Password */}
             <label className="text-sm text-gray-700">Password</label>
             <div className="relative">
               <input
@@ -120,7 +115,6 @@ const Signuppage: React.FC = () => {
               </span>
             </div>
 
-            {/* Button */}
             <button
               disabled={isSignup}
               type="submit"
@@ -135,7 +129,6 @@ const Signuppage: React.FC = () => {
               {isSignup ? "Creating account..." : "Sign up"}
             </button>
 
-            {/* Redirect */}
             <p className="text-center mt-5 text-sm text-gray-600">
               Already have an account?{" "}
               <span
@@ -149,7 +142,6 @@ const Signuppage: React.FC = () => {
           </form>
         </div>
 
-        {/* IMAGE */}
         <div className="hidden md:block md:w-1/2">
           <img src="/signupimg.png" className="w-full h-full object-contain" />
         </div>

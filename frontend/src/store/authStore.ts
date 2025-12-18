@@ -3,9 +3,7 @@ import { api } from "../lib/axios";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
 
-// ============ TYPES ============
 
-// User type
 interface User {
   _id: string;
   username: string;
@@ -16,8 +14,6 @@ interface User {
   status?: "online" | "offline" | "away" | "busy";
   createdAt?: string;
 }
-
-// Message type
 interface Message {
   _id: string;
   senderId: string;
@@ -27,38 +23,32 @@ interface Message {
   createdAt: string;
 }
 
-// Signup data type
 interface SignupData {
   username: string;
   email: string;
   password: string;
 }
 
-// Login data type
 interface LoginData {
   email: string;
   password: string;
 }
 
-// Send message data type
 interface SendMessageData {
   id: string;
   text?: string;
   image?: string;
 }
 
-// Profile update data type
 interface ProfileUpdateData {
   profile_pic?: string;
   username?: string;
 }
 
-// API Error response type
 interface ApiErrorResponse {
   message: string;
 }
 
-// ============ STORE STATE TYPE ============
 
 interface AuthState {
   // State
@@ -73,7 +63,6 @@ interface AuthState {
   currentChatuser: User | null;
   Chats: Message[];
 
-  // Actions
   checkAuth: () => Promise<void>;
   signup: (data: SignupData) => Promise<void>;
   login: (data: LoginData) => Promise<void>;
@@ -85,10 +74,8 @@ interface AuthState {
   Allchatdel: (id: string) => Promise<void>;
 }
 
-// ============ STORE ============
 
 export const useAuthStore = create<AuthState>((set, get) => ({
-  // Initial State
   AuthUser: null,
   isSignup: false,
   isLoginIn: false,
@@ -100,7 +87,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   currentChatuser: null,
   Chats: [],
 
-  // Check if user is authenticated
   checkAuth: async () => {
     try {
       const res = await api.get<User>("/check");

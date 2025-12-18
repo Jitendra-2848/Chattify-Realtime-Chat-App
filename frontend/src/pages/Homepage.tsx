@@ -57,7 +57,7 @@ const Homepage = () => {
       minute: "2-digit",
     });
 
-  /* 🔌 SOCKET CONNECT */
+  /*  SOCKET CONNECT */
   useEffect(() => {
     if (!AuthUser?._id) return;
 
@@ -72,7 +72,7 @@ const Homepage = () => {
     };
   }, [AuthUser?._id]);
 
-  /* 📩 RECEIVE MESSAGE */
+  /*  RECEIVE MESSAGE */
   useEffect(() => {
     const handleReceiveMessage = (data: ChatMessage) => {
       if (data.sender === currentChatuser?._id) {
@@ -88,7 +88,6 @@ const Homepage = () => {
     };
   }, [currentChatuser?._id]);
 
-  /* 🔄 LOAD CHAT WHEN USER CHANGES */
   useEffect(() => {
     if (
       currentChatuser?._id &&
@@ -96,7 +95,6 @@ const Homepage = () => {
     ) {
       prevChatUserRef.current = currentChatuser._id;
 
-      /* 🔥 NORMALIZE STORE DATA */
       const normalized: ChatMessage[] = Array.isArray(Chats)
         ? Chats.map((m: any) => ({
             _id: m._id,
@@ -111,12 +109,12 @@ const Homepage = () => {
     }
   }, [currentChatuser?._id, Chats]);
 
-  /* ⬇️ AUTOSCROLL */
+  /* AUTOSCROLL */
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  /* 📤 SEND MESSAGE */
+  /* SEND MESSAGE */
   const handleSend = async () => {
     if (!newMessage.trim() || !currentChatuser || !AuthUser) return;
 
@@ -170,7 +168,6 @@ const Homepage = () => {
       >
         {isChatOpen ? (
           <>
-            {/* HEADER */}
            <header className="px-2 py-1 border-b border-base-300 flex items-center justify-between bg-base-100">
               <div className="flex items-center gap-3">
                 <button 
@@ -233,7 +230,6 @@ const Homepage = () => {
               </div>
             </header>
 
-            {/* MESSAGES */}
             <div className="flex-1 overflow-y-auto p-4 space-y-2">
               {messages.length ? (
                 messages.map((msg) => {
@@ -269,7 +265,6 @@ const Homepage = () => {
               <div ref={chatEndRef} />
             </div>
 
-            {/* INPUT */}
             <div className="p-3 border-t flex gap-2">
               <input
                 className="input input-bordered flex-1"

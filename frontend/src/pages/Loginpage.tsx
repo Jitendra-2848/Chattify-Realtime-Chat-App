@@ -4,7 +4,6 @@ import { MdOutlineErrorOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 
-/* ✅ Define type for login data */
 interface LoginDataType {
   email: string;
   password: string;
@@ -42,7 +41,6 @@ const Loginpage: React.FC = () => {
     <div className="w-full min-h-screen flex justify-center items-center bg-gray-50">
       <div className="w-full max-w-5xl flex bg-white shadow-xl rounded-2xl overflow-hidden">
 
-        {/* Left Image (Desktop only) */}
         <div className="hidden md:block md:w-1/2">
           <img
             src="/loginimg.jpeg"
@@ -51,11 +49,9 @@ const Loginpage: React.FC = () => {
           />
         </div>
 
-        {/* Right Form */}
         <div className="w-full md:w-1/2 px-6 sm:px-12 py-10 flex items-center">
           <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto">
 
-            {/* Logo */}
             <div className="flex items-center gap-2 mb-6">
               <img
                 src="https://thumbs.dreamstime.com/b/chat-icon-isolated-white-background-79426494.jpg"
@@ -73,7 +69,6 @@ const Loginpage: React.FC = () => {
               Please enter your details to continue
             </p>
 
-            {/* Error */}
             {error && (
               <div className="flex items-center gap-2 text-red-500 mb-4 text-sm">
                 <MdOutlineErrorOutline />
@@ -81,7 +76,6 @@ const Loginpage: React.FC = () => {
               </div>
             )}
 
-            {/* Email */}
             <label className="text-sm font-medium text-gray-700">
               Email address
             </label>
@@ -95,7 +89,6 @@ const Loginpage: React.FC = () => {
                          focus:outline-none focus:ring-2 focus:ring-yellow-400"
             />
 
-            {/* Password */}
             <label className="text-sm font-medium text-gray-700">
               Password
             </label>
@@ -117,7 +110,6 @@ const Loginpage: React.FC = () => {
               </span>
             </div>
 
-            {/* Button */}
             <button
               type="submit"
               disabled={isLoginIn}
@@ -131,7 +123,6 @@ const Loginpage: React.FC = () => {
               {isLoginIn ? "Logging in..." : "Login"}
             </button>
 
-            {/* Redirect */}
             <p className="text-center text-sm text-gray-600 mt-5">
               Don’t have an account?{" "}
               <span

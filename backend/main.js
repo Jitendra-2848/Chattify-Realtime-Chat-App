@@ -34,9 +34,9 @@ app.get("/test", (req, res) => {
 
 // Database connection
 mongoose
-  .connect("mongodb://127.0.0.1:27017/chat")
+  .connect(`${process.env.Mongodb_URL}`)
   .then(() => console.log("✅ MongoDB Connected"))
-  .catch((err) => console.error("❌ MongoDB Error:", err));
+  .catch((err) => console.error("❌ MongoDB Error:", err.message));
 
 // Start server
 const PORT = process.env.PORT || 3000;

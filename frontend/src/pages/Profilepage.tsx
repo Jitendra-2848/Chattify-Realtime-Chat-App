@@ -10,7 +10,6 @@ const Profilepage = () => {
   const [name, setName] = useState("");
   const [editing, setediting] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  // 📸 Handle image upload
   const handleImageChange = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -43,12 +42,10 @@ const Profilepage = () => {
   return (
     <div className="w-full h-screen bg-base-200 flex justify-center items-center">
       <div className="bg-base-100 text-base-content max-w-2xl w-[90%] sm:w-[85%] shadow-xl rounded-3xl p-6 space-y-8">
-        {/* Header */}
         <div className="text-center text-sm">
           <p className="text-xl font-bold text-primary">Profile</p>
           <p className="text-gray-500">Your profile information</p>
 
-          {/* Profile Picture Section */}
           <div className="flex justify-center mt-5">
             <div className="relative w-36 sm:w-40">
               <img
@@ -93,7 +90,6 @@ const Profilepage = () => {
           )}
         </div>
 
-        {/* User Info Form */}
         <div className="text-sm w-full sm:w-[80%] mx-auto text-start">
           <form className="space-y-3">
             <div>
@@ -151,7 +147,6 @@ const Profilepage = () => {
           </form>
         </div>
 
-        {/* Account Information */}
         <div className="px-1 text-xs text-start border-t border-gray-300 pt-3">
           <p className="text-sm font-semibold mb-2 text-primary">
             Account Information
