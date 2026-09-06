@@ -37,8 +37,8 @@ app.use(
   })
 );
 
-// Ultra-fast Health Check route for Render cold-start detection & pinging
-app.get("/health", (req, res) => {
+// Ultra-fast status check route (supports /api/status and /health)
+app.get(["/api/status", "/health"], (req, res) => {
   res.status(200).json({
     status: "ok",
     uptime: Math.floor(process.uptime()),

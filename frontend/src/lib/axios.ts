@@ -12,10 +12,11 @@ export const api = axios.create({
 });
 
 /**
- * Fast ping to check backend health without authentication
+ * Fast ping to check backend status without authentication
+ * Uses /api/status to prevent ad-blockers from misclassifying /health as tracking
  */
 export const pingServerHealth = async (timeoutMs = 5000) => {
-  return await axios.get(`${BASE_URL}/health`, {
+  return await axios.get(`${BASE_URL}/api/status`, {
     timeout: timeoutMs,
     headers: {
       "Cache-Control": "no-cache",
