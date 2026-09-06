@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "server": "nodemon main.js"
+    "dev": "nodemon main.js",
+    "server": "nodemon main.js",
+    "start": "node main.js"
   },
   "keywords": [],
   "author": "Jitendra Prajapati",

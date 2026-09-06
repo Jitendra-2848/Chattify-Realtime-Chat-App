@@ -18,7 +18,6 @@ const login = async (req, res) => {
             return res.status(404).json({ message: "Invalid credentials" });
         }
         generateToken(user._id, res);
-        res.status(200).json({ message: "Login Successfully!" })
         return res.status(200).json({
             _id: user._id,
             username: user.username,
@@ -33,10 +32,16 @@ const login = async (req, res) => {
 }
 const logout = async (req, res) => {
     try {
-        res.cookie("jwt", "", { maxAge: 0 })
-        res.status(200).send("Logout route");
+        const isProduction = process.env.NODE_ENV === "production" || process.env.status === "production";
+        res.cookie("jwt", "", {
+            maxAge: 0,
+            httpOnly: true,
+            secure: isProduction,
+            sameSite: isProduction ? "none" : "lax",
+        });
+        return res.status(200).json({ message: "Logout successful" });
     } catch (error) {
-        res.status(400).send("Successfully logout", error.message);
+        return res.status(400).json({ message: "Logout failed", error: error.message });
     }
 
 }

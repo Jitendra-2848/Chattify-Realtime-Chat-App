@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {

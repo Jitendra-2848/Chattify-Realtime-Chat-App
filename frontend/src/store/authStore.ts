@@ -81,13 +81,14 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   isLoginIn: false,
   isProfileUpdated: false,
   isprofileupdating: false,
-  isCheckingAuth: true,
+  isCheckingAuth: false,
   isloggedout: false,
   messageUser: [],
   currentChatuser: null,
   Chats: [],
 
   checkAuth: async () => {
+    set({ isCheckingAuth: true });
     try {
       const res = await api.get<User>("/check");
       set({ AuthUser: res.data });

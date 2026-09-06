@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { io, Socket } from "socket.io-client";
 import { useAuthStore } from "../store/authStore";
-
-// Initialize socket connection
-const socket: Socket = io("http://localhost:3000", { 
-  withCredentials: true,
-  transports: ["websocket", "polling"]
-});
+import { socket } from "../lib/socket";
 
 const People: React.FC = () => {
   const { getmsg, getpeople, messageUser, AuthUser } = useAuthStore();

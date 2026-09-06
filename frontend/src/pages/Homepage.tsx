@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react";
-import { io, Socket } from "socket.io-client";
 import People from "./people";
 import { useAuthStore } from "../store/authStore";
 import { useThemeStore } from "../store/useThemeStore";
+import { socket } from "../lib/socket";
 import {
   Video,
   Phone,
@@ -23,11 +23,6 @@ interface ChatMessage {
   receiverId?: string;
   createdAt: string;
 }
-
-const socket: Socket = io("http://localhost:3000", {
-  withCredentials: true,
-  transports: ["websocket", "polling"],
-});
 
 const Homepage = () => {
   const { theme } = useThemeStore();

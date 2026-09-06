@@ -7,27 +7,56 @@ import Navbar from "./component/Navbar.jsx";
 import Loginpage from "./pages/Loginpage";
 import Signuppage from "./pages/Signuppage";
 import { useAuthStore } from "./store/authStore";
+import { useServerStore } from "./store/useServerStore";
+import ServerWakeUpModal from "./component/ServerWakeUpModal";
 import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 import { useThemeStore } from "./store/useThemeStore";
+
 const App: React.FC = () => {
-  const location = useLocation()
+  const location = useLocation();
   const {
     AuthUser,
     checkAuth,
     isCheckingAuth,
   } = useAuthStore();
-  const { theme } = useThemeStore()
+  const { theme } = useThemeStore();
+  const { isServerAwake, shouldShowModal, wakeUpServer } = useServerStore();
+
   useEffect(() => {
-    checkAuth();
-  }, [location, checkAuth]);
+    // Initiate wake-up probe as soon as frontend mounts
+    wakeUpServer().then((awake) => {
+      if (awake) {
+        checkAuth();
+      }
+    });
+  }, [wakeUpServer, checkAuth]);
+
+  // Show interactive wake-up experience while Render server is undergoing cold start
+  if (!isServerAwake) {
+    if (shouldShowModal) {
+      return (
+        <div data-theme={theme} className="min-h-screen bg-base-100">
+          <ServerWakeUpModal />
+        </div>
+      );
+    }
+    return (
+      <div data-theme={theme} className="flex h-screen items-center justify-center bg-base-100">
+        <Loader className="size-8 text-primary animate-spin" />
+      </div>
+    );
+  }
+
+  // After server is confirmed alive, show loader if verifying user auth
   if (isCheckingAuth && !AuthUser) {
     return (
-      <div className="flex h-screen items-center justify-center">
-        <Loader className="size-8 text-gray-50 animate-spin" />
+      <div data-theme={theme} className="flex h-screen items-center justify-center bg-base-100">
+        <Loader className="size-8 text-primary animate-spin" />
       </div>
-    )
+    );
   }
+
   return (
     <div data-theme={theme}>
       <Navbar />

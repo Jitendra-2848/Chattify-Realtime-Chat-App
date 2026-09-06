@@ -7,10 +7,14 @@ const generateToken = (userId, res) => {
     { expiresIn: "7d" }
   );
 
+  const isProduction =
+    process.env.NODE_ENV === "production" || process.env.status === "production";
+
   res.cookie("jwt", token, {
     httpOnly: true,
-    secure: process.env.status !== "production",
-    sameSite: "strict",
+    // In production across domains (e.g., Render + Vercel), secure must be true and sameSite "none"
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
